@@ -157,7 +157,7 @@ void enterConfigMode()
   delay(100);
   WiFi.mode(WIFI_AP_STA);
   WiFi.softAPConfig(WIFI_AP_IP, WIFI_AP_IP, WIFI_AP_Subnet);
-  WiFi.softAP(getWiFiName().c_str());
+  WiFi.softAP(getWiFiName().c_str()); 
   delay(500);
 
   IPAddress myIP = WiFi.softAPIP();
@@ -370,7 +370,8 @@ void enterConnectNet() {
   BlynkState::set(MODE_CONNECTING_NET);
   DEBUG_PRINT(String("Connecting to WiFi: ") + configStore.wifiSSID);
 
-  WiFi.mode(WIFI_STA);
+  // WiFi.mode(WIFI_STA);
+  WiFi.mode(WIFI_AP_STA);
 
   String hostname = getWiFiName();
   hostname.replace(" ", "-");
@@ -479,7 +480,8 @@ void enterSwitchToSTA() {
   delay(1000);
   WiFi.mode(WIFI_OFF);
   delay(100);
-  WiFi.mode(WIFI_STA);
+  // WiFi.mode(WIFI_STA);
+  WiFi.mode(WIFI_AP_STA);
 
   BlynkState::set(MODE_CONNECTING_NET);
 }
@@ -501,4 +503,3 @@ void enterError() {
 
   restartMCU();
 }
-

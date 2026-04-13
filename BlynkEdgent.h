@@ -152,4 +152,3 @@ void app_loop() {
     edgentTimer.run();
     edgentConsole.run();
 }
-
