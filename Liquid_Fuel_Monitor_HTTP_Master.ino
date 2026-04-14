@@ -80,6 +80,7 @@ String currentDate;
 
 int newRefill = 0;
 bool sentToday = false;             // prevents sending multiple times at same midnight
+bool eepromDirty = false;
 int lastPulseState = LOW;
 
 bool saveFuel1Flag = false;
@@ -550,7 +551,8 @@ void setup()
 void loop()
   
  {BlynkEdgent.run();
-
+  edgentTimer.run();
+  yield();}
   /*if (fuel1Flag)
      {noInterrupts();
       fuelLitresN01++;
@@ -580,7 +582,7 @@ void loop()
       Blynk.virtualWrite(V9, fuelLitresN02);
       fuel2Flag = false;}*/
        
- ESP.wdtFeed();}             // feed hardware WDT occasionally
+ //   ESP.wdtFeed();}             // feed hardware WDT occasionally
 
 /////////////////////////////////////////////////////////////////////////////////////
 ////////////////---------------- SEND TIMER FUNCTION ----------------////////////////
